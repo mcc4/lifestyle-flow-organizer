@@ -74,6 +74,21 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "ss02";
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/40 rounded-full hover:bg-muted-foreground/60;
   }
 }
 
@@ -88,5 +103,65 @@
   
   .lifestyle-gradient {
     @apply bg-gradient-to-r from-lifestyle-blue to-lifestyle-purple;
+  }
+
+  .glassmorphism {
+    @apply backdrop-blur-md bg-white/70 dark:bg-gray-900/70 border border-white/20 dark:border-gray-800/20;
+  }
+
+  .button-glow {
+    @apply relative overflow-hidden;
+  }
+
+  .button-glow::after {
+    @apply content-[''] absolute inset-0 z-[-1] bg-gradient-to-r from-lifestyle-blue to-lifestyle-purple opacity-0 transition-opacity duration-300;
+  }
+
+  .button-glow:hover::after {
+    @apply opacity-100;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(67, 97, 238, 0.3);
+  }
+
+  .link-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-current after:origin-bottom-right after:scale-x-0 after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100;
+  }
+
+  .card-shine {
+    @apply relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent;
+  }
+
+  .menu-item {
+    @apply flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md transition-colors hover:bg-gradient-to-r hover:from-lifestyle-blue/10 hover:to-lifestyle-purple/10;
+  }
+
+  .menu-item.active {
+    @apply bg-gradient-to-r from-lifestyle-blue/20 to-lifestyle-purple/20 text-primary;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
   }
 }
